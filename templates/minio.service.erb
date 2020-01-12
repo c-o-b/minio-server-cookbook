@@ -1,29 +1,26 @@
 [Unit]
-Description=Minio
-Documentation=https://docs.minio.io
+Description=MinIO
+Documentation=https://docs.min.io
 Wants=network-online.target
 After=network-online.target
-AssertFileIsExecutable=/usr/local/bin/minio
+AssertFileIsExecutable=<%= @minio['binary_path'] %>
 
 [Service]
 PermissionsStartOnly=true
 
-EnvironmentFile=-/etc/default/minio
+EnvironmentFile=-<%= @minio['envfile'] %>
 ExecStartPre=/bin/bash -c "[ -n \"${MINIO_VOLUMES}\" ] || echo \"Variable MINIO_VOLUMES not set in /etc/default/minio\""
 
-ExecStart=/usr/local/bin/minio server $MINIO_OPTS $MINIO_VOLUMES
+ExecStart=<%= @minio['binary_path'] %> server $MINIO_OPTS $MINIO_VOLUMES
 
 # Let systemd restart this service only if it has ended with the clean exit code or signal.
 Restart=on-success
-
-StandardOutput=journal
-StandardError=inherit
 
 # Specifies the maximum file descriptor number that can be opened by this process
 LimitNOFILE=65536
 
 # Disable timeout logic and wait until process is stopped
-TimeoutStopSec=0
+TimeoutStopSec=infinity
 
 # SIGTERM signal is used to stop Minio
 KillSignal=SIGTERM
