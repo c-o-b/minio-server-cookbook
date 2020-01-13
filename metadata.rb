@@ -6,7 +6,7 @@ description	 'Installs/Configures Minio'
 long_description 'Installs/Configures Minio'
 chef_version	 '>= 12.14' if respond_to?(:chef_version)
 
-version		 '0.2.0'
+version		 '0.2.1'
 
 supports 'redhat', '>= 7.0'
 supports 'centos', '>= 7.0'
