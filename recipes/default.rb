@@ -20,7 +20,10 @@ else	# assume rhel7, expand massively for others
     end
   end
 
-  package 'minio'
+  package 'minio' do
+    options (node.read('minio','yumoptions')|| node.read('yum','yumoptions')||'') if 
+      (node.read('minio','yumoptions')|| node.read('yum','yumoptions'))
+  end
 end
 
 directory node['minio']['volume_path'] do

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.2.1 (2020-01-12)
+
+IMPROVEMENTS:
+
+* allow for Yum options during RPM install
+* ensure error message is correct from systemd invocation panic
+  attacks
+
 ## 0.2.0 (2020-01-11)
 
 IMPROVEMENTS:

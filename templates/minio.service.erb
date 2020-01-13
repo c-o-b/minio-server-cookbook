@@ -9,7 +9,7 @@ AssertFileIsExecutable=<%= @minio['binary_path'] %>
 PermissionsStartOnly=true
 
 EnvironmentFile=-<%= @minio['envfile'] %>
-ExecStartPre=/bin/bash -c "[ -n \"${MINIO_VOLUMES}\" ] || echo \"Variable MINIO_VOLUMES not set in /etc/default/minio\""
+ExecStartPre=/bin/bash -c "[ -n \"${MINIO_VOLUMES}\" ] || echo \"Variable MINIO_VOLUMES not set in <%= @minio['envfile'] %>\""
 
 ExecStart=<%= @minio['binary_path'] %> server $MINIO_OPTS $MINIO_VOLUMES
 
